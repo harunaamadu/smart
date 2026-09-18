@@ -66,11 +66,11 @@ export function LoginForm() {
           type="button"
           size="lg"
           variant="outline"
-          className="w-full gap-2"
+          className="w-full h-12 gap-2"
           onClick={handleGoogleSignIn}
           disabled={googlePending}
         >
-          <GoogleIcon className="size-4" />
+          <GoogleIcon className="size-6" />
           {googlePending ? "Redirecting…" : "Continue with Google"}
         </Button>
 

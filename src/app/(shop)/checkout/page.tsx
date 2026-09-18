@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RedirectToSignIn } from "@/lib/auth/gates";
-import { useCurrentUserState } from "@/lib/auth/use-current-user";
+import { useCurrentUserState } from "@/lib/auth/client";
 import { placeOrder } from "@/lib/server/orders";
 import { money } from "@/lib/formats";
 import { checkoutSchema } from "@/lib/schemas";
@@ -22,7 +22,10 @@ export default function CheckoutPage() {
   const [pending, setPending] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  if (isPending) return <div className="container-site py-16 text-sm text-muted">Loading…</div>;
+  if (isPending)
+    return (
+      <div className="container-site py-16 text-sm text-muted">Loading…</div>
+    );
   if (!user) return <RedirectToSignIn />;
 
   const subtotal = cartSubtotal(items);
@@ -41,7 +44,7 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="container-site py-8">
+    <div className="container mx-auto px-4 py-8">
       <h1 className="text-2xl font-semibold">Checkout</h1>
       <form
         className="mt-8 grid gap-8 lg:grid-cols-[1fr_20rem]"
@@ -87,10 +90,13 @@ export default function CheckoutPage() {
               },
             });
             clear();
-            toast.success("Order placed", { description: `Order ${result.id}` });
+            toast.success("Order placed", {
+              description: `Order ${result.id}`,
+            });
             router.push("/account");
           } catch (err) {
-            const message = err instanceof Error ? err.message : "Could not place order";
+            const message =
+              err instanceof Error ? err.message : "Could not place order";
             if (message === "Unauthorized") {
               toast.error("Please sign in to place your order");
               router.push("/login");
@@ -102,22 +108,49 @@ export default function CheckoutPage() {
           }
         }}
       >
-        <div className="space-y-4 rounded-md border border-line p-5">
+        <div className="space-y-4 rounded-md border border-border/90 p-5">
           <h2 className="font-semibold">Shipping address</h2>
           {errors.form ? (
-            <p role="alert" className="rounded-sm border border-sale/40 bg-sale/10 px-3 py-2 text-sm text-destructive">
+            <p
+              role="alert"
+              className="rounded-sm border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive"
+            >
               {errors.form}
             </p>
           ) : null}
-          <Field name="fullName" label="Full name" error={errors.fullName} defaultValue={user.name ?? ""} />
-          <Field name="email" label="Email" type="email" error={errors.email} defaultValue={user.email ?? ""} />
+          <Field
+            name="fullName"
+            label="Full name"
+            error={errors.fullName}
+            defaultValue={user.displayName ?? ""}
+          />
+          <Field
+            name="email"
+            label="Email"
+            type="email"
+            error={errors.email}
+            defaultValue={user.primaryEmail ?? ""}
+          />
           <Field name="phone" label="Phone" error={errors.phone} />
-          <Field name="addressLine" label="Street address" error={errors.addressLine} />
+          <Field
+            name="addressLine"
+            label="Street address"
+            error={errors.addressLine}
+          />
           <div className="grid gap-4 sm:grid-cols-2">
             <Field name="city" label="City" error={errors.city} />
-            <Field name="postalCode" label="Postal code" error={errors.postalCode} />
+            <Field
+              name="postalCode"
+              label="Postal code"
+              error={errors.postalCode}
+            />
           </div>
-          <Field name="country" label="Country" error={errors.country} defaultValue="United States" />
+          <Field
+            name="country"
+            label="Country"
+            error={errors.country}
+            defaultValue="United States"
+          />
           <div className="grid gap-1.5">
             <Label htmlFor="notes">Notes (optional)</Label>
             <textarea
@@ -128,11 +161,15 @@ export default function CheckoutPage() {
             />
           </div>
         </div>
-        <aside className="h-fit rounded-md border border-line p-5">
+
+        <aside className="lg:sticky lg:top-8 h-fit rounded-md border border-line p-5">
           <h2 className="font-semibold">Order</h2>
           <ul className="mt-3 space-y-2 text-sm">
             {items.map((i) => (
-              <li key={`${i.productId}-${i.size}-${i.color}`} className="flex justify-between gap-3">
+              <li
+                key={`${i.productId}-${i.size}-${i.color}`}
+                className="flex justify-between gap-3"
+              >
                 <span className="line-clamp-1 capitalize">
                   {i.title} × {i.qty}
                 </span>
@@ -149,12 +186,12 @@ export default function CheckoutPage() {
               <dt className="text-muted">Shipping</dt>
               <dd>{shipping === 0 ? "Free" : money(shipping)}</dd>
             </div>
-            <div className="flex justify-between border-t border-line pt-2 font-semibold">
+            <div className="flex justify-between border-t border-border/90 pt-2 font-semibold">
               <dt>Total</dt>
               <dd className="text-primary">{money(total)}</dd>
             </div>
           </dl>
-          <Button type="submit" className="mt-5 w-full" disabled={pending}>
+          <Button size="lg" type="submit" className="mt-5 w-full" disabled={pending}>
             {pending ? "Placing…" : "Place order"}
           </Button>
         </aside>
@@ -189,7 +226,7 @@ function Field({
         aria-describedby={errorId}
       />
       {error ? (
-        <p id={errorId} className="text-tiny text-sale">
+        <p id={errorId} className="text-xs text-destructive">
           {error}
         </p>
       ) : null}

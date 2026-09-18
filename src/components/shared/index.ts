@@ -5,3 +5,4 @@ export { AppLink } from "@/components/shared/app-link";
 export { Logo } from "@/components/shared/logo";
 export { FadedBorder } from "@/components/shared/faded-border";
 export { StarRating } from "@/components/shared/star-rating";
+export { SortSelect } from "@/components/shared/sort-select";

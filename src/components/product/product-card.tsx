@@ -1,17 +1,18 @@
-import { Eye, Heart, Repeat, ShoppingBag } from "lucide-react";
+"use client"
+
 import type { ReactNode } from "react";
 import { toast } from "sonner";
-import { Badge } from "@/components/ui/badge";
-import type { Product } from "@/lib/cms/types";
-import { useCart } from "@/lib/stores/cart";
-import { useUi } from "@/lib/stores/ui";
-import { useWishlist } from "@/lib/stores/wishlist";
 import { cn } from "@/lib/utils";
 import { money } from "@/lib/formats";
-import { StarRating } from "../shared";
-import { Link } from "../layout/site-header";
 import { Button } from "../ui/button";
+import { StarRating } from "../shared";
+import { useUi } from "@/lib/stores/ui";
+import { useCart } from "@/lib/stores/cart";
+import { Link } from "../layout/site-header";
+import type { Product } from "@/lib/cms/types";
+import { useWishlist } from "@/lib/stores/wishlist";
 import { ProductBadgeTag } from "../shared/product-badge";
+import { Eye, Heart, Repeat, ShoppingBag } from "lucide-react";
 
 export function ProductCard({ product }: { product: Product }) {
   const add = useCart((s) => s.add);
