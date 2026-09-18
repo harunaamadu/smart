@@ -1,0 +1,7 @@
+export { HeroBanner } from '@/components/home/hero-banner'
+export { CategoryRow } from '@/components/home/category-row'
+export { ShopSidebar } from '@/components/home/sidebar'
+export { ProductColumns } from '@/components/home/product-columns'
+export { DealOfDay } from '@/components/home/deal-of-day'
+export { TestimonialCtaServices, BlogRow } from '@/components/home/home-extras'
+export { NewProducts } from '@/components/home/new-products'

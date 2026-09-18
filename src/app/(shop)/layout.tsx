@@ -1,4 +1,6 @@
-import { Header } from "@/components/layout";
+import { MobileBottomNav, MobileDrawers } from "@/components/blocks/mobile-menu";
+import { Footer, Header } from "@/components/layout";
+import { CartDrawer, NewsletterModal, PurchaseToast } from "@/components/layout/overlays";
 import { websiteName } from "@/lib/cms";
 import { capitalize } from "@/lib/formats";
 import type { Metadata } from "next";
@@ -9,8 +11,7 @@ export const metadata: Metadata = {
     default: `${capitalize(`websiteName`)} | Modern Fashion Essentials`,
     template: `%s | ${capitalize(`websiteName`)}`,
   },
-  description:
-    `Discover ${capitalize(`websiteName`)} — clean, modern fashion for everyday wear. Shop elevated essentials, refined silhouettes, and versatile pieces designed for effortless style.`,
+  description: `Discover ${capitalize(`websiteName`)} — clean, modern fashion for everyday wear. Shop elevated essentials, refined silhouettes, and versatile pieces designed for effortless style.`,
   keywords: [
     `${websiteName}`,
     "modern fashion",
@@ -32,7 +33,15 @@ export default function ShopLayout({ children }: { children: ReactNode }) {
       <main className="flex-1">{children}</main>
 
       {/* Footer */}
-      {/* <SiteFooter /> */}
+      <Footer />
+
+      <MobileBottomNav />
+      <MobileDrawers />
+      <CartDrawer />
+      <NewsletterModal />
+      <div className="container mx-auto fixed inset-0 pointer-events-none">
+        <PurchaseToast />
+      </div>
     </div>
   );
 }

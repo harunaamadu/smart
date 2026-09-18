@@ -1,10 +1,9 @@
-// src/lib/users/get-user.ts
-
 import { prisma } from "@/lib/prisma";
-import { auth } from "@/lib/auth";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 
 export async function getCurrentUser() {
-  const session = await auth();
+  const session = await getServerSession(authOptions);
 
   if (!session?.user?.id) {
     return null;

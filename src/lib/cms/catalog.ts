@@ -19,7 +19,10 @@ export const products: Product[] = [
     parentCategory: "clothes",
     price: 4,
     compareAt: 5,
-    images: ["/images/products/1.jpg"],
+    images: [
+      "https://res.cloudinary.com/dqylma6u3/image/upload/v1786375660/coat-1-1_vxhu4q.webp",
+      "https://res.cloudinary.com/dqylma6u3/image/upload/v1786375661/coat-1-3_bhxrwu.webp",
+    ],
     rating: 4,
     stock: 42,
     description:
@@ -38,7 +41,10 @@ export const products: Product[] = [
     parentCategory: "clothes",
     price: 7,
     compareAt: 17,
-    images: ["/images/products/2.jpg"],
+    images: [
+      "https://res.cloudinary.com/dqylma6u3/image/upload/v1786567071/p_5_kkomix.jpg",
+      "https://res.cloudinary.com/dqylma6u3/image/upload/v1786567070/p_4_jqglb7.jpg",
+    ],
     rating: 4,
     stock: 80,
     description:
@@ -58,7 +64,9 @@ export const products: Product[] = [
     parentCategory: "clothes",
     price: 3,
     compareAt: 5,
-    images: ["/images/products/3.jpg"],
+    images: [
+      "https://res.cloudinary.com/dqylma6u3/image/upload/v1786567069/p_1_v12awr.jpg",
+    ],
     rating: 5,
     stock: 64,
     description:
@@ -77,7 +85,9 @@ export const products: Product[] = [
     parentCategory: "clothes",
     price: 12,
     compareAt: 15,
-    images: ["/images/products/4.jpg"],
+    images: [
+      "https://res.cloudinary.com/dqylma6u3/image/upload/v1786375285/headphone_ia568k.png",
+    ],
     rating: 4,
     stock: 39,
     description:
@@ -95,7 +105,9 @@ export const products: Product[] = [
     parentCategory: "clothes",
     price: 45,
     compareAt: 12,
-    images: ["/images/products/clothes-1.jpg"],
+    images: [
+      "https://res.cloudinary.com/dqylma6u3/image/upload/v1786374569/P01014614_mlpq8m.webp",
+    ],
     rating: 4,
     stock: 35,
     description:
@@ -133,7 +145,10 @@ export const products: Product[] = [
     parentCategory: "clothes",
     price: 25,
     compareAt: 35,
-    images: ["/images/products/clothes-3.jpg", "/images/products/clothes-4.jpg"],
+    images: [
+      "https://res.cloudinary.com/dqylma6u3/image/upload/v1786374572/P01044759_jogf3p.webp",
+      "https://res.cloudinary.com/dqylma6u3/image/upload/v1786374567/P01044759_d1_gpbjni.webp",
+    ],
     rating: 4,
     stock: 28,
     description:
@@ -153,7 +168,10 @@ export const products: Product[] = [
     parentCategory: "clothes",
     price: 45,
     compareAt: 56,
-    images: ["/images/products/shirt-1.jpg", "/images/products/shirt-2.jpg"],
+    images: [
+      "https://res.cloudinary.com/dqylma6u3/image/upload/v1786374569/P01014614_mlpq8m.webp",
+      "https://res.cloudinary.com/dqylma6u3/image/upload/v1786374566/P01014614_d2_nxy04x.webp",
+    ],
     rating: 4,
     stock: 40,
     description:
@@ -291,7 +309,10 @@ export const products: Product[] = [
     parentCategory: "footwear",
     price: 25,
     compareAt: 30,
-    images: ["/images/products/party-wear-1.jpg", "/images/products/party-wear-2.jpg"],
+    images: [
+      "/images/products/party-wear-1.jpg",
+      "/images/products/party-wear-2.jpg",
+    ],
     rating: 3,
     stock: 20,
     description:
@@ -522,7 +543,11 @@ export const products: Product[] = [
     available: 40,
     description:
       "A three-piece wash set: clarifying shampoo, weightless conditioner, and a gel face wash. Built for daily use, unscented enough to layer with fragrance.",
-    details: ["Shampoo + conditioner + face wash", "Daily formula", "Cruelty free"],
+    details: [
+      "Shampoo + conditioner + face wash",
+      "Daily formula",
+      "Cruelty free",
+    ],
     sections: ["top-rated", "deal"],
   },
   {
@@ -593,7 +618,8 @@ export const banners: Banner[] = [
     kicker: "Trending item",
     title: "Women's latest fashion sale",
     priceLabel: "starting at $ 20.00",
-    image: "/images/banner-1.jpg",
+    image:
+      "https://res.cloudinary.com/dqylma6u3/image/upload/v1786570881/banner-1_ron9ei.jpg",
     alt: "women's latest fashion sale",
     href: "/shop?category=clothes",
   },
@@ -603,7 +629,8 @@ export const banners: Banner[] = [
     kicker: "Trending accessories",
     title: "Modern sunglasses",
     priceLabel: "starting at $ 15.00",
-    image: "/images/banner-2.jpg",
+    image:
+      "https://res.cloudinary.com/dqylma6u3/image/upload/v1786570881/banner-2_sneryq.jpg",
     alt: "modern sunglasses",
     href: "/shop?category=glasses",
   },
@@ -613,27 +640,84 @@ export const banners: Banner[] = [
     kicker: "Sale Offer",
     title: "New fashion summer sale",
     priceLabel: "starting at $ 29.99",
-    image: "/images/banner-3.jpg",
+    image:
+      "https://res.cloudinary.com/dqylma6u3/image/upload/v1786570882/banner-3_ceuwom.jpg",
     alt: "new fashion summer sale",
     href: "/shop?badge=sale",
   },
 ];
 
 export const categoryTiles: CategoryTile[] = [
-  { _type: "categoryTile", _id: "dress", title: "Dress & frock", slug: "clothes", icon: "/images/icons/dress.svg", count: 53 },
-  { _type: "categoryTile", _id: "winter", title: "Winter wear", slug: "clothes", icon: "/images/icons/coat.svg", count: 58 },
-  { _type: "categoryTile", _id: "glasses", title: "Glasses & lens", slug: "glasses", icon: "/images/icons/glasses.svg", count: 68 },
-  { _type: "categoryTile", _id: "shorts", title: "Shorts & jeans", slug: "clothes", icon: "/images/icons/shorts.svg", count: 84 },
-  { _type: "categoryTile", _id: "tee", title: "T-shirts", slug: "clothes", icon: "/images/icons/tee.svg", count: 35 },
-  { _type: "categoryTile", _id: "jacket", title: "Jacket", slug: "clothes", icon: "/images/icons/jacket.svg", count: 16 },
-  { _type: "categoryTile", _id: "watch", title: "Watch", slug: "electronics", icon: "/images/icons/watch.svg", count: 27 },
-  { _type: "categoryTile", _id: "hat", title: "Hat & caps", slug: "clothes", icon: "/images/icons/hat.svg", count: 39 },
+  {
+    _type: "categoryTile",
+    _id: "dress",
+    title: "Dress & frock",
+    slug: "clothes",
+    icon: "/icons/dress.svg",
+    count: 53,
+  },
+  {
+    _type: "categoryTile",
+    _id: "winter",
+    title: "Winter wear",
+    slug: "clothes",
+    icon: "/icons/coat.svg",
+    count: 58,
+  },
+  {
+    _type: "categoryTile",
+    _id: "glasses",
+    title: "Glasses & lens",
+    slug: "glasses",
+    icon: "/icons/glasses.svg",
+    count: 68,
+  },
+  {
+    _type: "categoryTile",
+    _id: "shorts",
+    title: "Shorts & jeans",
+    slug: "clothes",
+    icon: "/icons/shorts.svg",
+    count: 84,
+  },
+  {
+    _type: "categoryTile",
+    _id: "tee",
+    title: "T-shirts",
+    slug: "clothes",
+    icon: "/icons/tee.svg",
+    count: 35,
+  },
+  {
+    _type: "categoryTile",
+    _id: "jacket",
+    title: "Jacket",
+    slug: "clothes",
+    icon: "/icons/jacket.svg",
+    count: 16,
+  },
+  {
+    _type: "categoryTile",
+    _id: "watch",
+    title: "Watch",
+    slug: "electronics",
+    icon: "/icons/watch.svg",
+    count: 27,
+  },
+  {
+    _type: "categoryTile",
+    _id: "hat",
+    title: "Hat & caps",
+    slug: "clothes",
+    icon: "/icons/hat.svg",
+    count: 39,
+  },
 ];
 
 export const sidebarCategories = [
   {
     title: "Clothes",
-    icon: "/images/icons/dress.svg",
+    icon: "/icons/dress.svg",
     slug: "clothes",
     items: [
       { name: "Shirt", stock: 300, href: "/shop?q=shirt" },
@@ -644,7 +728,7 @@ export const sidebarCategories = [
   },
   {
     title: "Footwear",
-    icon: "/images/icons/shoes.svg",
+    icon: "/icons/shoes.svg",
     slug: "footwear",
     items: [
       { name: "Sports", stock: 45, href: "/shop?q=sports" },
@@ -655,7 +739,7 @@ export const sidebarCategories = [
   },
   {
     title: "Jewelry",
-    icon: "/images/icons/jewelry.svg",
+    icon: "/icons/jewelry.svg",
     slug: "jewelry",
     items: [
       { name: "Earrings", stock: 46, href: "/shop?q=earring" },
@@ -665,7 +749,7 @@ export const sidebarCategories = [
   },
   {
     title: "Perfume",
-    icon: "/images/icons/perfume.svg",
+    icon: "/icons/perfume.svg",
     slug: "perfume",
     items: [
       { name: "Clothes Perfume", stock: 12, href: "/shop?category=perfume" },
@@ -676,7 +760,7 @@ export const sidebarCategories = [
   },
   {
     title: "Cosmetics",
-    icon: "/images/icons/cosmetics.svg",
+    icon: "/icons/cosmetics.svg",
     slug: "cosmetics",
     items: [
       { name: "Shampoo", stock: 68, href: "/shop?q=shampoo" },
@@ -687,7 +771,7 @@ export const sidebarCategories = [
   },
   {
     title: "Glasses",
-    icon: "/images/icons/glasses.svg",
+    icon: "/icons/glasses.svg",
     slug: "glasses",
     items: [
       { name: "Sunglasses", stock: 50, href: "/shop?category=glasses" },
@@ -696,7 +780,7 @@ export const sidebarCategories = [
   },
   {
     title: "Bags",
-    icon: "/images/icons/bag.svg",
+    icon: "/icons/bag.svg",
     slug: "bags",
     items: [
       { name: "Shopping Bag", stock: 62, href: "/shop?category=bags" },
@@ -718,7 +802,10 @@ export const megaMenu: NavMegaColumn[] = [
       { label: "Tablet", href: "/shop?category=electronics" },
       { label: "Headphone", href: "/shop?category=electronics" },
     ],
-    banner: { src: "/images/electronics-banner-1.jpg", alt: "headphone collection" },
+    banner: {
+      src: "/images/electronics-banner-1.jpg",
+      alt: "headphone collection",
+    },
   },
   {
     title: "Men's",
@@ -754,7 +841,10 @@ export const megaMenu: NavMegaColumn[] = [
       { label: "Mouse", href: "/shop?category=electronics" },
       { label: "Microphone", href: "/shop?category=electronics" },
     ],
-    banner: { src: "/images/electronics-banner-2.jpg", alt: "mouse collection" },
+    banner: {
+      src: "/images/electronics-banner-2.jpg",
+      alt: "mouse collection",
+    },
   },
 ];
 
@@ -905,19 +995,63 @@ export const services = [
 export const footerDirectory = [
   {
     title: "Fashion :",
-    links: ["T-shirt", "Shirts", "shorts & jeans", "jacket", "dress & frock", "innerwear", "hosiery"],
+    links: [
+      "T-shirt",
+      "Shirts",
+      "shorts & jeans",
+      "jacket",
+      "dress & frock",
+      "innerwear",
+      "hosiery",
+    ],
   },
   {
     title: "footwear :",
-    links: ["sport", "formal", "Boots", "casual", "cowboy shoes", "safety shoes", "Party wear shoes", "Branded", "Firstcopy", "Long shoes"],
+    links: [
+      "sport",
+      "formal",
+      "Boots",
+      "casual",
+      "cowboy shoes",
+      "safety shoes",
+      "Party wear shoes",
+      "Branded",
+      "Firstcopy",
+      "Long shoes",
+    ],
   },
   {
     title: "jewellery :",
-    links: ["Necklace", "Earrings", "Couple rings", "Pendants", "Crystal", "Bangles", "bracelets", "nosepin", "chain"],
+    links: [
+      "Necklace",
+      "Earrings",
+      "Couple rings",
+      "Pendants",
+      "Crystal",
+      "Bangles",
+      "bracelets",
+      "nosepin",
+      "chain",
+    ],
   },
   {
     title: "cosmetics :",
-    links: ["Shampoo", "Bodywash", "Facewash", "makeup kit", "liner", "lipstick", "prefume", "Body soap", "scrub", "hair gel", "hair colors", "hair dye", "sunscreen", "skin loson"],
+    links: [
+      "Shampoo",
+      "Bodywash",
+      "Facewash",
+      "makeup kit",
+      "liner",
+      "lipstick",
+      "prefume",
+      "Body soap",
+      "scrub",
+      "hair gel",
+      "hair colors",
+      "hair dye",
+      "sunscreen",
+      "skin loson",
+    ],
   },
 ];
 
@@ -968,7 +1102,8 @@ export const testimonial = {
   name: "Alan Doe",
   role: "CEO & Founder Invision",
   image: "/images/testimonial-1.jpg",
-  quote: "Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor dolor sit amet.",
+  quote:
+    "Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor dolor sit amet.",
 };
 
 const bySlug = new Map(products.map((p) => [p.slug, p]));
@@ -983,7 +1118,12 @@ export function productsIn(section: Product["sections"][number]): Product[] {
 
 export function relatedProducts(product: Product, limit = 4): Product[] {
   return products
-    .filter((p) => p._id !== product._id && (p.parentCategory === product.parentCategory || p.category === product.category))
+    .filter(
+      (p) =>
+        p._id !== product._id &&
+        (p.parentCategory === product.parentCategory ||
+          p.category === product.category),
+    )
     .slice(0, limit);
 }
 
@@ -991,7 +1131,9 @@ export function searchProducts(query: string): Product[] {
   const q = query.trim().toLowerCase();
   if (!q) return products;
   return products.filter((p) =>
-    [p.title, p.category, p.parentCategory, p.description].some((v) => v.toLowerCase().includes(q)),
+    [p.title, p.category, p.parentCategory, p.description].some((v) =>
+      v.toLowerCase().includes(q),
+    ),
   );
 }
 

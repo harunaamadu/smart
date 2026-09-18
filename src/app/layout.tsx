@@ -3,7 +3,7 @@ import { Geist, Geist_Mono, Montserrat, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { DefaultProviders } from "@/components/providers/default-providers";
-import { ReactNode } from "react";
+import { Toaster } from "@/components/ui/sonner";
 
 const interHeading = Inter({ subsets: ["latin"], variable: "--font-heading" });
 
@@ -21,7 +21,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Smart",
-  description: "Smart — a modern fashion eCommerce store for clothes, footwear, jewelry and more.",
+  description:
+    "Smart — a modern fashion eCommerce store for clothes, footwear, jewelry and more.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -33,13 +34,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         "antialiased",
         geistSans.variable,
         geistMono.variable,
-        "font-sans",
+        "font-sans scroll-smooth",
         montserrat.variable,
         interHeading.variable,
       )}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col text-foreground bg-background">
         <DefaultProviders>{children}</DefaultProviders>
       </body>
     </html>

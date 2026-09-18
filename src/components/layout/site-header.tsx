@@ -1,16 +1,22 @@
 "use client";
 
-import link from "next/link";
-import { Heart, Search, ShoppingBag, User, UserIcon } from "lucide-react";
-import { type ReactNode, type SubmitEvent, useState } from "react";
-import { SocialLinks, ThemeToggle } from "@/components/shared";
-import { useSession, signOut } from "next-auth/react";
-// import { SignedIn, SignedOut } from "@/lib/auth/gates";
-import { megaMenu } from "@/lib/cms";
-import { cartCount, useCart, useUi, useWishlist } from "@/lib/stores";
-import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { useCurrentUserState } from "@/lib/auth/client";
+import NextLink from "next/link";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
+import { DesktopNav } from "../blocks/navlinks";
+import { AccountSlot } from "../shared/account-slot";
+import { useSession, signOut } from "next-auth/react";
+import { usePathname, useRouter } from "next/navigation";
+import { Heart, Search, ShoppingBag } from "lucide-react";
+import { type ReactNode, type SubmitEvent, useState } from "react";
+import { cartCount, useCart, useUi, useWishlist } from "@/lib/stores";
+import {
+  CountBubble,
+  Logo,
+  SocialLinks,
+  ThemeToggle,
+} from "@/components/shared";
 
 export function Header() {
   const router = useRouter();
@@ -24,10 +30,10 @@ export function Header() {
   const setLanguage = useUi((s) => s.setLanguage);
 
   const pathname = usePathname();
-  if (pathname.startsWith("/admin")) return null;
-
   const { data: session } = useSession();
   const [menuOpen, setMenuOpen] = useState(false);
+
+  if (pathname.startsWith("/admin")) return null;
 
   async function handleSignOut() {
     toast.success("Signed out successfully");
@@ -41,18 +47,19 @@ export function Header() {
   }
 
   return (
-    <header className="relative z-40 bg-canvas" data-gsap-nav>
-      <div className="hidden border-b border-line bg-line/70 text-tiny text-muted sm:block">
-        <div className="container-site flex items-center justify-between gap-4 py-2.5">
+    <header className="relative z-40 bg-background" data-gsap-nav>
+      <div className="hidden border-b border-border bg-muted text-muted-foreground sm:block">
+        <div className="container mx-auto flex items-center justify-between gap-4 py-1.5 text-xs">
           <SocialLinks />
-          <p className="hidden text-center md:block">
-            Free Shipping This Week Order Over - $55
+          <p className="hidden text-center text-sm md:block">
+            Free Shipping This Week Order Over - $
+            <span className="text-primary font-semibold">500</span>
           </p>
           <div className="flex items-center gap-3">
             <select
               value={currency}
               onChange={(e) => setCurrency(e.target.value as "usd" | "eur")}
-              className="bg-transparent text-tiny text-davys outline-none"
+              className="bg-transparent text-xs text-davys outline-none"
               aria-label="Currency"
             >
               <option value="usd">USD $</option>
@@ -63,7 +70,7 @@ export function Header() {
               onChange={(e) =>
                 setLanguage(e.target.value as "en" | "es" | "fr")
               }
-              className="bg-transparent text-tiny text-davys outline-none"
+              className="bg-transparent text-xs text-davys outline-none"
               aria-label="Language"
             >
               <option value="en">English</option>
@@ -75,194 +82,79 @@ export function Header() {
         </div>
       </div>
 
-      <div className="border-b border-line">
-        <div className="container-site flex flex-col gap-4 py-5 md:flex-row md:items-center md:gap-8">
-          <Link to="/" className="mx-auto md:mx-0" aria-label="Anon home">
-            <img src="/images/logo/logo.svg" alt="Anon" className="logo-mark" />
+      <div className="border-b border-b-border/90">
+        <div className="container mx-auto flex flex-col gap-4 py-5 md:flex-row md:items-center md:gap-8 px-4">
+          <Link
+            to="/"
+            className="mx-auto md:mx-0 h-auto w-32"
+            aria-label="Anon home"
+          >
+            <Logo />
           </Link>
 
           <form onSubmit={onSearch} className="relative min-w-0 flex-1">
-            <input
+            <Input
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="Enter your product name..."
               autoComplete="off"
               suppressHydrationWarning
-              className="h-11 w-full rounded-md border border-line bg-surface pr-12 pl-4 text-sm text-onyx outline-none placeholder:text-gray focus:border-salmon"
+              className="h-11 w-full pr-12 pl-4 text-sm outline-none focus-visible:ring-primary caret-primary"
             />
-            <button
+            <Button
+              variant="ghost"
               type="submit"
               aria-label="Search"
-              className="absolute top-1/2 right-1 grid size-9 -translate-y-1/2 place-items-center rounded-md bg-surface text-ink hover:text-salmon"
+              className="absolute top-1/2 right-1 grid size-9 -translate-y-1/2 place-items-center rounded-md bg-background text-muted-foreground hover:text-primary"
             >
               <Search className="size-5" />
-            </button>
+            </Button>
           </form>
 
-          <div className="hidden items-center gap-1 md:flex">
+          <div className="hidden items-center gap-4 md:flex text-foreground">
             <AccountSlot />
-            <Link
-              to="/wishlist"
-              aria-label="Wishlist"
-              className="relative grid size-11 place-items-center text-ink hover:text-salmon"
+
+            <Button
+              variant="ghost"
+              size="icon-lg"
+              asChild
+              className="[&_svg]:size-5!"
             >
-              <Heart className="size-7" />
-              <CountBubble count={wish} />
-            </Link>
-            <button
-              type="button"
+              <Link
+                to="/wishlist"
+                aria-label="Wishlist"
+                className="relative group/link grid place-items-center"
+              >
+                <Heart
+                  size={28}
+                  strokeWidth={2}
+                  className="group-hover/link:text-primary"
+                />
+                <CountBubble count={wish} />
+              </Link>
+            </Button>
+
+            <Button
+              variant="ghost"
+              size="icon-lg"
               aria-label="Open bag"
               onClick={() => setCartOpen(true)}
-              className="relative grid size-11 place-items-center text-ink hover:text-salmon"
+              className="relative group/link grid place-items-center [&_svg]:size-5!"
             >
-              <ShoppingBag className="size-7" />
+              <ShoppingBag
+                size={28}
+                strokeWidth={2}
+                className="group-hover/link:text-primary"
+              />
               <CountBubble count={cartCount(items)} />
-            </button>
+            </Button>
           </div>
         </div>
       </div>
 
-      <nav className="hidden border-b border-line lg:block">
-        <ul className="container-site flex items-center justify-center gap-1">
-          <li>
-            <Link to="/" className="menu-link">
-              Home
-            </Link>
-          </li>
-          <li className="group relative">
-            <Link to="/shop" className="menu-link">
-              Categories
-            </Link>
-            <div className="invisible absolute top-full left-1/2 z-50 w-[min(72rem,calc(100vw-2rem))] -translate-x-1/2 translate-y-2 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-              <div className="grid grid-cols-4 overflow-hidden rounded-md border border-line bg-surface shadow-card">
-                {megaMenu.map((col, i) => (
-                  <ul
-                    key={`${col.title}-${i}`}
-                    className="border-r border-line last:border-r-0"
-                  >
-                    <li>
-                      <Link
-                        to="/shop"
-                        search={searchFromHref(col.href)}
-                        className="block border-b border-line px-5 py-3 text-sm font-semibold text-ink hover:text-salmon"
-                      >
-                        {col.title}
-                      </Link>
-                    </li>
-                    {col.links.map((l) => (
-                      <li key={l.label}>
-                        <Link
-                          to="/shop"
-                          search={searchFromHref(l.href)}
-                          className="block px-5 py-2 text-sm text-muted capitalize hover:text-salmon"
-                        >
-                          {l.label}
-                        </Link>
-                      </li>
-                    ))}
-                    {col.banner ? (
-                      <li className="p-4">
-                        <img
-                          src={col.banner.src}
-                          alt={col.banner.alt}
-                          className="w-full rounded-sm object-cover"
-                        />
-                      </li>
-                    ) : null}
-                  </ul>
-                ))}
-              </div>
-            </div>
-          </li>
-          <li>
-            <Link to="/shop" search={{ q: "men" }} className="menu-link">
-              Men's
-            </Link>
-          </li>
-          <li>
-            <Link to="/shop" search={{ q: "women" }} className="menu-link">
-              Women's
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/shop"
-              search={{ category: "jewelry" }}
-              className="menu-link"
-            >
-              Jewelry
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/shop"
-              search={{ category: "perfume" }}
-              className="menu-link"
-            >
-              Perfume
-            </Link>
-          </li>
-          <li>
-            <Link to="/blog" className="menu-link">
-              Blog
-            </Link>
-          </li>
-          <li>
-            <Link to="/shop" search={{ badge: "sale" }} className="menu-link">
-              Hot Offers
-            </Link>
-          </li>
-        </ul>
-      </nav>
+      <DesktopNav />
     </header>
   );
-}
-
-function AccountSlot() {
-  const { user, isPending } = useCurrentUserState();
-
-  if (isPending) {
-    return (
-      <div
-        className="size-11 animate-pulse rounded-full bg-muted"
-        aria-hidden="true"
-      />
-    );
-  }
-
-  const href = user ? "/account" : "/login";
-  const label = user?.displayName ?? (user ? "Account" : "Sign in");
-
-  return (
-    <Link
-      href={href}
-      aria-label={label}
-      className="grid size-11 place-items-center text-foreground transition-colors hover:text-salmon"
-    >
-      <UserIcon
-        size={28}
-        strokeWidth={1.5}
-      />
-    </Link>
-  );
-}
-
-export default AccountSlot;
-
-function CountBubble({ count }: { count: number }) {
-  return (
-    <span className="absolute top-0.5 right-0.5 grid min-w-5 place-items-center rounded-full bg-salmon px-1 text-2xs font-semibold text-surface">
-      {count}
-    </span>
-  );
-}
-
-function searchFromHref(href: string): { q?: string; category?: string } {
-  const q = href.split("q=")[1];
-  const c = href.split("category=")[1];
-  if (q) return { q };
-  if (c) return { category: c };
-  return {};
 }
 
 type SiteLinkProps = {
@@ -274,11 +166,11 @@ type SiteLinkProps = {
   "aria-label"?: string;
 };
 
-function Link({ to, href, search, ...props }: SiteLinkProps) {
-  return <Link href={href ?? buildHref(to ?? "/", search)} {...props} />;
+export function Link({ to, href, search, ...props }: SiteLinkProps) {
+  return <NextLink href={href ?? buildHref(to ?? "/", search)} {...props} />;
 }
 
-function buildHref(to: string, search?: Record<string, string>) {
+export function buildHref(to: string, search?: Record<string, string>) {
   if (!search || Object.keys(search).length === 0) return to;
   return `${to}?${new URLSearchParams(search).toString()}`;
 }
